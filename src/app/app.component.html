@@ -1,8 +1,9 @@
-<mat-toolbar color="primary" class="navbar">
-    <div>Tsubaki Craft</div>
-    <div>
-        <span>Home</span>
-        <span>About</span>
-        <span>Services</span>
-    </div>
-</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav (opened)="log('open')" (closed)="log('Close')" [(opened)]="opened" mode="side">Side</mat-sidenav>
+    <mat-sidenav-content>
+        <button mat-button (click)="opened=!opened">Toggle Open</button>
+        <button mat-button (click)="sidenav.open()">Open</button>
+        <button mat-button (click)="sidenav.close()">Close</button>
+        <button mat-button (click)="sidenav.toggle()">Toggle</button>
+    </mat-sidenav-content>
+</mat-sidenav-container>
