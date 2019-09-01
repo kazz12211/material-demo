@@ -1,9 +1,23 @@
-<mat-sidenav-container>
-    <mat-sidenav #sidenav (opened)="log('open')" (closed)="log('Close')" [(opened)]="opened" mode="side">Side</mat-sidenav>
-    <mat-sidenav-content>
-        <button mat-button (click)="opened=!opened">Toggle Open</button>
-        <button mat-button (click)="sidenav.open()">Open</button>
-        <button mat-button (click)="sidenav.close()">Close</button>
-        <button mat-button (click)="sidenav.toggle()">Toggle</button>
-    </mat-sidenav-content>
-</mat-sidenav-container>
+<mat-menu #appMenu="matMenu" xPosition="after" yPosition="above">
+    <button mat-menu-item [matMenuTriggerFor]="subMenu">Frontend</button>
+    <button mat-menu-item>Backend</button>
+</mat-menu>
+
+<button mat-flat-button [matMenuTriggerFor]="appMenu" class="center">Menu</button>
+
+<mat-menu #subMenu="matMenu">
+    <button mat-menu-item>Angular</button>
+    <button mat-menu-item>React</button>
+    <button mat-menu-item>Vue</button>
+</mat-menu>
+
+<mat-menu #lazyMenu="matMenu">
+    <ng-template matMenuContent let-name="name" let-hobby="hobby">
+        <button mat-menu-item>Settings</button>
+        <button mat-menu-item>Hobby is {{hobby}}</button>
+        <button mat-menu-item>Log out {{name}}</button>
+    </ng-template>
+</mat-menu>
+
+<button mat-raised-button [matMenuTriggerData]="{name: 'Kazuo', hobby: 'football'}" [matMenuTriggerFor]="lazyMenu">Kazuo</button>
+<button mat-raised-button [matMenuTriggerData]="{name: 'Tsubaki', hobby: 'baseball'}" [matMenuTriggerFor]="lazyMenu">Tsubaki</button>
