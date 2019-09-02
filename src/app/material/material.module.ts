@@ -13,7 +13,7 @@ import { MatGridListModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material';
 import { MatCardModule } from '@angular/material';
 import { MatTabsModule } from '@angular/material';
-
+import { MatStepperModule } from '@angular/material';
 const material = [
   MatButtonModule,
   MatButtonToggleModule,
@@ -28,7 +28,8 @@ const material = [
   MatGridListModule,
   MatExpansionModule,
   MatCardModule,
-  MatTabsModule
+  MatTabsModule,
+  MatStepperModule
 ];
 
 @NgModule({
