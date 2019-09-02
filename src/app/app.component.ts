@@ -1,40 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms'; 
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'material-demo';
 
-  options: string[] = ['Angular', 'React', 'Vue'];
-  objectOptions = [
-    { name: 'Angular' },
-    { name: 'React' },
-    { name: 'Vue' },
-    { name: 'Angular Material' }
-  ];
-  
-  myControl = new FormControl();
+  minDate = new Date();
+  maxDate = new Date(2020, 2, 10);
 
-  filteredOptions: Observable<string[]>;
-
-  ngOnInit(): void {
-    this.filteredOptions = this.myControl.valueChanges.pipe(startWith(''), map(value => this._filter(value)));
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.options.filter(option =>
-      option.toLowerCase().includes(filterValue)
-    );
-  }
-
-  displayFn(subject) {
-    return subject ? subject.name : undefined;
-  }
+  dateFilter = date => {
+    const day = date.getDay();
+    return day != 0 && day != 6;
+  };
 }
