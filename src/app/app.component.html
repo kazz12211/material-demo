@@ -1,8 +1,7 @@
-<button 
-mat-raised-button 
-matTooltip="Welcome to future" 
-matTooltipPosition="before"
-matTooltipShowDelay="2000"
-matTooltipHideDelay="2000"> 
-    Hello
+<button mat-button (click)="openSnackBar('Item deleted', 'Undo')">
+    Delete
+</button>
+
+<button mat-button (click)="openCustomSnackBar()">
+    Show Custom SnackBar
 </button>

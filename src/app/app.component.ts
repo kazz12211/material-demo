@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,30 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'material-demo';
 
-  minDate = new Date();
-  maxDate = new Date(2020, 2, 10);
+  constructor(private snackbar: MatSnackBar) {}
 
-  dateFilter = date => {
-    const day = date.getDay();
-    return day != 0 && day != 6;
-  };
+  openSnackBar(message, action) {
+    let snackBarRef = this.snackbar.open(message, action, {duration: 2000});
+
+    snackBarRef.afterDismissed().subscribe(() => {
+      console.log('Snack-bar dismissed')
+    });
+
+    snackBarRef.onAction().subscribe(() => {
+      console.log('Snack-bar action trigger');
+    });
+  }
+
+  openCustomSnackBar() {
+    this.snackbar.openFromComponent(CustomSnackBarComponent, {duration: 2000});
+  }
 }
+
+
+@Component({
+  selector: '<custom-snackbar',
+  template: `
+    <span style='color:orange'>Custom Snackbar</span>
+  `
+})
+export class CustomSnackBarComponent {}
