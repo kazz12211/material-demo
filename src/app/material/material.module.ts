@@ -17,7 +17,9 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatCheckboxModule,
+  MatRadioModule
 } from '@angular/material';
 
 import { MatBadgeModule } from '@angular/material/badge';
@@ -42,7 +44,9 @@ const material = [
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatCheckboxModule,
+  MatRadioModule
 ];
 
 @NgModule({
