@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material';
+import { DialogExampleComponent } from './dialog-example/dialog-example.component';
 
 @Component({
   selector: 'app-root',
@@ -9,30 +10,14 @@ import { MatSnackBar } from '@angular/material';
 export class AppComponent {
   title = 'material-demo';
 
-  constructor(private snackbar: MatSnackBar) {}
+  constructor(public dialog: MatDialog) {}
 
-  openSnackBar(message, action) {
-    let snackBarRef = this.snackbar.open(message, action, {duration: 2000});
+  openDialog() {
+    let dialogRef = this.dialog.open(DialogExampleComponent, {data: {name: 'Kazuo'}});
 
-    snackBarRef.afterDismissed().subscribe(() => {
-      console.log('Snack-bar dismissed')
-    });
-
-    snackBarRef.onAction().subscribe(() => {
-      console.log('Snack-bar action trigger');
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
     });
   }
 
-  openCustomSnackBar() {
-    this.snackbar.openFromComponent(CustomSnackBarComponent, {duration: 2000});
-  }
 }
-
-
-@Component({
-  selector: '<custom-snackbar',
-  template: `
-    <span style='color:orange'>Custom Snackbar</span>
-  `
-})
-export class CustomSnackBarComponent {}
