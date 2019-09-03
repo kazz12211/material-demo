@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatTableDataSource } from '@angular/material';
 
 export interface PeriodicElement {
   name: string;
@@ -29,9 +30,13 @@ export class AppComponent {
   title = 'material-demo';
 
   displayedColumns: string[] = ['position', 'name', 'weight'];
-  dataSource = ELEMENT_DATA;
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   logData(data) {
     console.log(data);
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
